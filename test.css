@@ -1,0 +1,118 @@
+* {
+  font-family: Helvetica, sans-serif;
+}
+
+body {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  margin: 0;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  font-size: 50px;
+  padding: 0 60px 120px;
+  text-align: center;
+}
+
+.cake {
+  display: flex;
+  justify-content: space-around;
+  height: 300px;
+  min-width: 500px;
+  background: #de9c4b;
+  border-radius: 50% 50% 0 0;
+  margin-bottom: -250px;
+}
+
+.candle {
+  position: relative;
+  width: 13px;
+  height: 100px;
+  background-image: linear-gradient(45deg, hotpink 8px, #ffe6f2 8px, #ffe6f2 16px, hotpink 16px, hotpink 24px, #ffe6f2 24px, #ffe6f2 32px, hotpink 32px, hotpink 40px, #ffe6f2 40px, #ffe6f2 48px, hotpink 48px, hotpink 56px, #ffe6f2 56px, #ffe6f2 64px, hotpink 64px, hotpink 72px, #ffe6f2 72px, #ffe6f2 80px, hotpink 80px);
+  margin: -100px 0 0;
+  display: flex;
+  justify-content: center;
+}
+.candle.out .flame,
+.candle.out .glow {
+  opacity: 0;
+}
+.candle::after {
+  content: "";
+  background-image: linear-gradient(to top, bisque, black 40%);
+  height: 10px;
+  width: 1px;
+  position: absolute;
+  top: -10px;
+}
+
+.flame {
+  transition: 0.3s;
+  position: absolute;
+  bottom: 105%;
+  width: 10px;
+  height: 30px;
+  border-radius: 50% 50% 20% 20%;
+  z-index: 10;
+  background: white;
+  background: linear-gradient(white 80%, transparent);
+  animation: enlargeFlame 5s linear infinite;
+  transform: rotateX(var(--wind));
+  transform-origin: center bottom;
+}
+.flame::before {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 15px 0 rgba(247, 93, 0, 0.4), 0 -6px 4px 0 rgba(247, 128, 0, 0.7);
+}
+
+.glow {
+  transition: 0.3s;
+  width: 10px;
+  height: 20px;
+  border-radius: 50% 50% 35% 35%;
+  position: absolute;
+  top: -22px;
+  left: 2px;
+  z-index: -1;
+  opacity: 1;
+  transform: rotateX(var(--wind));
+  background: rgba(0, 133, 255, 0.7);
+  box-shadow: 0 -40px 30px 0 #dc8a0c, 0 40px 50px 0 #dc8a0c, inset 3px 0 2px 0 rgba(0, 133, 255, 0.6), inset -3px 0 2px 0 rgba(0, 133, 255, 0.6);
+}
+.glow::before {
+  content: "";
+  width: 70%;
+  height: 60%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+@keyframes moveFlame {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(var(--wind));
+  }
+}
+@keyframes enlargeFlame {
+  0%, 100% {
+    height: 30px;
+  }
+  50% {
+    height: 40px;
+  }
+}
